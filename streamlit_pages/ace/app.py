@@ -41,6 +41,21 @@ KEYBINDINGS = [
 
 def main():
     st.markdown(requests.get("https://raw.githubusercontent.com/okld/streamlit-ace/master/README.md").text)
+    demo_container = st.beta_container()
+    st.write("---")
+
+    with st.beta_expander("USAGE"):
+        st.help(st_ace)
+    
+    with st.beta_expander("SOURCE"):
+        st.code(Path(__file__).read_text())
+    
+    with demo_container:
+        demo()
+
+
+def demo():
+    st.sidebar.title("⚙️ Parameters")
 
     content = st_ace(
         placeholder=st.sidebar.text_input("Editor placeholder", value="Some placeholder."),
@@ -58,14 +73,6 @@ def main():
     )
 
     st.write(content)
-
-    st.write("---")
-
-    with st.beta_expander("USAGE"):
-        st.help(st_ace)
-    
-    with st.beta_expander("SOURCE"):
-        st.code(Path(__file__).read_text())
 
 
 if __name__ == "__main__":
