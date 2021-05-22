@@ -1,0 +1,11 @@
+# Common
+streamlit
+
+# Dependencies
+pandas-profiling
+requests
+
+# Components
+streamlit-ace
+streamlit-elements
+streamlit-pandas-profiling
