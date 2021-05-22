@@ -8,8 +8,21 @@ from streamlit_pandas_profiling import st_profile_report
 
 
 def main():
-    st.markdown(requests.get("https://raw.githubusercontent.com/okld/streamlit-pandas-profiling/master/README.md").text)
+    st.markdown(requests.get("https://raw.githubusercontent.com/okld/streamlit-pandas-profiling/main/README.md").text)
+    demo_container = st.beta_container()
+    st.write("---")
 
+    with st.beta_expander("USAGE"):
+        st.help(st_profile_report)
+    
+    with st.beta_expander("SOURCE"):
+        st.code(Path(__file__).read_text())
+
+    with demo_container:
+        demo()
+
+
+def demo():
     dataset = "https://storage.googleapis.com/tf-datasets/titanic/train.csv"
 
     df = pd.read_csv(dataset)
@@ -18,16 +31,9 @@ def main():
     st.write(df)
     st.sidebar.write(f"🔗 [Titanic dataset]({dataset})")
 
-    with st.beta_expander("REPORT", expanded=True):
-        st_profile_report(pr)
-
-    st.write("---")
-    
-    with st.beta_expander("USAGE"):
-        st.help(st_profile_report)
-    
-    with st.beta_expander("SOURCE"):
-        st.code(Path(__file__).read_text())
+    if st.button("Generate report"):
+        with st.beta_expander("REPORT", expanded=True):
+            st_profile_report(pr)
 
 
 if __name__ == "__main__":
