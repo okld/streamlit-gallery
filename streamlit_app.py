@@ -7,9 +7,9 @@ PAGES = {
     "Discourse": pages.discourse,
     "Disqus": pages.disqus,
     "Elements": pages.elements,
-    "Media Player": pages.player,
     "Pandas Profiling": pages.pandas_profiling,
     "Quill Editor": pages.quill,
+    "React Player": pages.player,
 }
 
 
