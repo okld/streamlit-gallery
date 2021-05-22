@@ -20,6 +20,8 @@ def main():
 
     with st.beta_expander("REPORT", expanded=True):
         st_profile_report(pr)
+
+    st.write("---")
     
     with st.beta_expander("USAGE"):
         st.help(st_profile_report)

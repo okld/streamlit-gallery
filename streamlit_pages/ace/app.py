@@ -1,5 +1,7 @@
+import requests
 import streamlit as st
 
+from pathlib import Path
 from streamlit_ace import st_ace
 
 
@@ -38,6 +40,8 @@ KEYBINDINGS = [
 
 
 def main():
+    st.markdown(requests.get("https://raw.githubusercontent.com/okld/streamlit-ace/master/README.md").text)
+
     content = st_ace(
         placeholder=st.sidebar.text_input("Editor placeholder", value="Some placeholder."),
         language=st.sidebar.selectbox("Language mode", options=LANGUAGES, index=121),
@@ -54,6 +58,14 @@ def main():
     )
 
     st.write(content)
+
+    st.write("---")
+
+    with st.beta_expander("USAGE"):
+        st.help(st_ace)
+    
+    with st.beta_expander("SOURCE"):
+        st.code(Path(__file__).read_text())
 
 
 if __name__ == "__main__":
