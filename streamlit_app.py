@@ -41,7 +41,7 @@ def main():
         st.write("---")
     
     page = PAGES[page_name]
-    page["source"]()
+    body = st.beta_container()
 
     if page_name != "Home":
         st.write("---")
@@ -51,8 +51,9 @@ def main():
     
         with st.beta_expander("SOURCE"):
             st.code(Path(inspect.getsourcefile(page["source"])).read_text())
-
-
+    
+    with body:
+        page["source"]()
 
 
 if __name__ == "__main__":
