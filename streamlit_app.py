@@ -1,13 +1,15 @@
 import streamlit as st
 import streamlit_pages as pages
 
-from pathlib import Path
-
 PAGES = {
-    "Home": lambda: st.markdown(Path("README.md").read_text()),
+    "Home": pages.home,
     "Ace Editor": pages.ace,
+    "Discourse": pages.discourse,
+    "Disqus": pages.disqus,
     "Elements": pages.elements,
+    "Media Player": pages.player,
     "Pandas Profiling": pages.pandas_profiling,
+    "Quill Editor": pages.quill,
 }
 
 
@@ -23,8 +25,7 @@ def main():
 
     with st.sidebar:
         st.title("🖼️ Streamlit Gallery")
-        page_name = st.radio("", page_names, page_default)
-        st.write("---")
+        page_name = st.selectbox("", page_names, page_default)
     
     PAGES[page_name]()
 
