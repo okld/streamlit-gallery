@@ -7,5 +7,9 @@ requests
 
 # Components
 streamlit-ace
+streamlit-discourse
+streamlit-disqus
 streamlit-elements
 streamlit-pandas-profiling
+streamlit-player
+streamlit-quill
