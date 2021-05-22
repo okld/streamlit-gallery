@@ -14,7 +14,7 @@ PAGES = {
 def main():
     params = st.experimental_get_query_params()
     page_names = tuple(PAGES.keys())
-    page_lower = [page.replace(" ", "_").lower() for page in PAGES.keys()]
+    page_lower = [page.replace(" ", "-").lower() for page in PAGES.keys()]
 
     try:
         page_default = page_lower.index(params["p"][0])
