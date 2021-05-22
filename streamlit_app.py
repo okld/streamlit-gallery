@@ -36,7 +36,7 @@ def main():
         page_default = 0
 
     with st.sidebar:
-        st.title("🖼️ Streamlit Showcase")
+        st.title("🖼️ Streamlit Gallery")
         page_name = st.radio("", page_names, page_default)
         st.write("---")
     
