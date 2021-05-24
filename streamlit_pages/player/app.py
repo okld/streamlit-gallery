@@ -11,7 +11,7 @@ def main():
 
             options = {
                 "events": st.multiselect("Events to listen", _SUPPORTED_EVENTS, ["onProgress"]),
-                "progress_interval": st.slider("Progress refresh interval (ms)", 200, 2000, 500, 1),
+                "progress_interval": 1000,
                 "volume": st.slider("Volume", 0.0, 1.0, 1.0, .01),
                 "playing": st.checkbox("Playing", False),
                 "loop": st.checkbox("Loop", False),
