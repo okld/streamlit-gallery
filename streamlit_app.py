@@ -47,5 +47,5 @@ def google_analytics(id):
 
 if __name__ == "__main__":
     st.set_page_config(page_title="🎈 Okld's Gallery", layout="wide")
-    google_analytics("G-RLT7XCJ4D1")
+    google_analytics("G-QRPCLYZGRK")
     main()
