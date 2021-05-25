@@ -24,12 +24,28 @@ def main():
         page_default = 0
 
     with st.sidebar:
-        st.title("🖼️ Streamlit Gallery")
+        st.title("🎈 Streamlit Gallery")
         page_name = st.selectbox("", page_names, page_default)
     
     PAGES[page_name]()
 
 
+def google_analytics():
+    st.sidebar.markdown(unsafe_allow_html=True, body=f"""
+        <iframe height=0 srcdoc="
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src='https://www.googletagmanager.com/gtag/js?id=G-CGSM9DTBK8'></script>
+            <script>
+            window.parent.dataLayer = window.parent.dataLayer || [];
+            function gtag() {{ window.parent.dataLayer.push(arguments); }}
+            gtag('js', new Date());
+            gtag('config', 'G-CGSM9DTBK8');
+            </script>
+        " />
+    """)
+
+
 if __name__ == "__main__":
-    st.set_page_config(page_title="Okld Gallery", layout="wide")
+    st.set_page_config(page_title="🎈 Okld's Gallery", layout="wide")
+    google_analytics()
     main()
