@@ -9,7 +9,7 @@ def main():
         st.sidebar.title("⚙️ Parameters")
 
         content = st_quill(
-            placeholder=st.sidebar.text_input("Placeholder", "Write your text here"),
+            placeholder="Write your text here",
             html=st.sidebar.checkbox("Return HTML", False),
             readonly=st.sidebar.checkbox("Read only", False),
             key="quill",
