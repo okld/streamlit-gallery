@@ -11,14 +11,18 @@ def main():
         dataset = "https://storage.googleapis.com/tf-datasets/titanic/train.csv"
 
         df = pd.read_csv(dataset)
-        pr = df.profile_report(explorative=True)
+        pr = gen_profile_report(df, explorative=True)
 
         st.write(f"🔗 [Titanic dataset]({dataset})")
         st.write(df)
 
-        if st.button("Generate report"):
-            with st.beta_expander("REPORT", expanded=True):
-                st_profile_report(pr)
+        with st.beta_expander("REPORT", expanded=True):
+            st_profile_report(pr)
+
+
+@st.cache(allow_output_mutation=True)
+def gen_profile_report(df, *report_args, **report_kwargs):
+    return df.profile_report(*report_args, **report_kwargs)
 
 
 if __name__ == "__main__":
