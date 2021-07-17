@@ -1,6 +1,6 @@
 import streamlit as st
 
-from streamlit_pages.utils import readme
+from streamlit_gallery.utils import readme
 from streamlit_quill import st_quill
 
 

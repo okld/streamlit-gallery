@@ -2,7 +2,7 @@ import pandas as pd
 import pandas_profiling
 import streamlit as st
 
-from streamlit_pages.utils import readme
+from streamlit_gallery.utils import readme
 from streamlit_pandas_profiling import st_profile_report
 
 

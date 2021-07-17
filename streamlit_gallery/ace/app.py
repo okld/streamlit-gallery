@@ -1,7 +1,7 @@
 import streamlit as st
 
 from streamlit_ace import st_ace, KEYBINDINGS, LANGUAGES, THEMES
-from streamlit_pages.utils import readme
+from streamlit_gallery.utils import readme
 
 
 def main():

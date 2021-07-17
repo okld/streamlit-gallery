@@ -1,7 +1,7 @@
 import streamlit as st
 
 from streamlit_player import st_player, _SUPPORTED_EVENTS
-from streamlit_pages.utils import readme
+from streamlit_gallery.utils import readme
 
 
 def main():
@@ -38,13 +38,13 @@ def main():
 
         with c1:
             url = st.text_input("First URL", "https://youtu.be/CmSKVW1v0xM")
-            event = st_player(url, **options, key=1)
+            event = st_player(url, **options, key="youtube_player")
 
             st.write(event)
 
         with c2:
             url = st.text_input("Second URL", "https://soundcloud.com/imaginedragons/demons")
-            event = st_player(url, **options, key=2)
+            event = st_player(url, **options, key="soundcloud_player")
 
             st.write(event)
 
