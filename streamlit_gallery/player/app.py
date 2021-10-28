@@ -34,7 +34,7 @@ def main():
             * YouTube
             """)
 
-        c1, c2 = st.beta_columns(2)
+        c1, c2 = st.columns(2)
 
         with c1:
             url = st.text_input("First URL", "https://youtu.be/CmSKVW1v0xM")

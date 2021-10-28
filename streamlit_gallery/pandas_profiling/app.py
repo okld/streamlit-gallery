@@ -16,7 +16,7 @@ def main():
         st.write(f"🔗 [Titanic dataset]({dataset})")
         st.write(df)
 
-        with st.beta_expander("REPORT", expanded=True):
+        with st.expander("REPORT", expanded=True):
             st_profile_report(pr)
 
 

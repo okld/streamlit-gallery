@@ -8,7 +8,7 @@ def main():
     with readme("streamlit-ace", st_ace, __file__):
         st.sidebar.title("⚙️ Parameters")
 
-        with st.beta_container():
+        with st.container():
             content = st_ace(
                 placeholder=st.sidebar.text_input("Editor placeholder", value="Write your code here"),
                 language=st.sidebar.selectbox("Language mode", options=LANGUAGES, index=121),
