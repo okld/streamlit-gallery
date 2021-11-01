@@ -1,20 +1,58 @@
 import streamlit as st
-import streamlit_gallery as gallery
-from streamlit_gallery.utils import st_query_radio
+from typing import Callable
+from streamlit_gallery import apps, components
+
+PAGE_PARAM = "p"
+CONTENT = {
+    "Applications": {
+        "Streamlit gallery": apps.gallery,
+    },
+    "Components": {
+        "Ace editor": components.ace_editor,
+        "Discourse": components.discourse,
+        "Disqus": components.disqus,
+        "Pandas profiling": components.pandas_profiling,
+        "Quill editor": components.quill_editor,
+        "React player": components.react_player,
+    },
+}
 
 
 def main():
-    st.sidebar.title("🎈 Okld's Gallery")
-    st_query_radio("", "p", {
-        "Home": gallery.home,
-        "Ace Editor": gallery.ace,
-        "Discourse": gallery.discourse,
-        "Disqus": gallery.disqus,
-        "Elements": gallery.elements,
-        "Pandas Profiling": gallery.pandas_profiling,
-        "Quill Editor": gallery.quill,
-        "React Player": gallery.player,
-    })()
+    query_params = st.experimental_get_query_params()
+    page_param = query_params[PAGE_PARAM][0] if PAGE_PARAM in query_params else "streamlit-gallery"
+    page_selected = None
+
+    with st.sidebar:
+        st.title("🎈 Okld's Gallery")
+        st.write("")
+
+        for category_name, pages in CONTENT.items():
+            category_expander = st.sidebar.expander(category_name.upper(), expanded=True)
+
+            for page_name, page_function in pages.items():
+                page_key = page_name.replace(" ", "-").lower()
+
+                st.session_state[page_key] = (page_key == page_param)
+
+                if category_expander.checkbox(
+                    page_name, False,
+                    key=page_key,
+                    on_change=select_page,
+                    args=[page_key]
+                ):
+                    page_selected = page_function
+
+    if isinstance(page_selected, Callable):
+        page_selected()
+
+
+def select_page(page_key):
+    if page_key in st.session_state and st.session_state[page_key]:
+        query_params = st.experimental_get_query_params()
+        query_params[PAGE_PARAM] = page_key
+
+        st.experimental_set_query_params(**query_params)
 
 
 if __name__ == "__main__":

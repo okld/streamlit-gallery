@@ -6,8 +6,10 @@ from streamlit_gallery.utils import readme
 
 def main():
     with readme("streamlit-player", st_player, __file__):
-        with st.sidebar:
-            st.title("⚙️ Parameters")
+        c1, c2, c3 = st.columns([3, 3, 2])
+
+        with c3:
+            st.subheader("Parameters")
 
             options = {
                 "events": st.multiselect("Events to listen", _SUPPORTED_EVENTS, ["onProgress"]),
@@ -19,25 +21,23 @@ def main():
                 "muted": st.checkbox("Muted", False),
             }
 
-            st.write("""
-            ---
-            ## ⏯️ Supported players
-            * Dailymotion
-            * Facebook
-            * Local files
-            * Mixcloud
-            * SoundCloud
-            * Streamable
-            * Twitch
-            * Vimeo
-            * Wistia
-            * YouTube
-            """)
+            with st.expander("SUPPORTED PLAYERS", expanded=True):
+                st.write("""
+                - Dailymotion
+                - Facebook
+                - Mixcloud
+                - SoundCloud
+                - Streamable
+                - Twitch
+                - Vimeo
+                - Wistia
+                - YouTube
+                <br/><br/>
+                """, unsafe_allow_html=True)
 
-        c1, c2 = st.columns(2)
 
         with c1:
-            url = st.text_input("First URL", "https://youtu.be/CmSKVW1v0xM")
+            url = st.text_input("First URL", "https://youtu.be/c9k8K1eII4g")
             event = st_player(url, **options, key="youtube_player")
 
             st.write(event)
