@@ -5,10 +5,10 @@ streamlit
 streamlit-ace
 streamlit-discourse
 streamlit-disqus
-streamlit-elements
 streamlit-pandas-profiling
 streamlit-player
 streamlit-quill
+./streamlit_elements-0.1.0-py3-none-any.whl
 
 # Dependencies
 pandas-profiling
