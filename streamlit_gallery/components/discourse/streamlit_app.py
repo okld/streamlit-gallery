@@ -1,7 +1,7 @@
 import streamlit as st
 
 from streamlit_discourse import st_discourse
-from streamlit_gallery.utils import readme
+from streamlit_gallery.utils.readme import readme
 
 
 def main():

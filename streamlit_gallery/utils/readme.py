@@ -5,13 +5,13 @@ import streamlit as st
 from contextlib import contextmanager
 from pathlib import Path
 
-_filter_share = re.compile(r"^.*\[share_\w+\].*$", re.MULTILINE)
+FILTER_SHARE = re.compile(r"^.*\[share_\w+\].*$", re.MULTILINE)
 
 
 @contextmanager
 def readme(project, usage=None, source=None):
     content = requests.get(f"https://raw.githubusercontent.com/okld/{project}/main/README.md").text
-    st.markdown(_filter_share.sub("", content))
+    st.markdown(FILTER_SHARE.sub("", content))
 
     demo = st.container()
 
