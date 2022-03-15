@@ -28,7 +28,10 @@ class DataGrid(Dashboard.Item):
         print(params)
 
     def __call__(self, json_data):
-        data = json.loads(json_data)
+        try:
+            data = json.loads(json_data)
+        except json.JSONDecodeError:
+            data = self.DEFAULT_ROWS
 
         with mui.paper(key=self._key, sx={"display": "flex", "flexDirection": "column"}, elevation=3):
             with self.title_bar(padding="10px 15px 10px 15px", dark_switcher=False):
