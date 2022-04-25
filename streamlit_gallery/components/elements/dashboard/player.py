@@ -11,13 +11,13 @@ class Player(Dashboard.Item):
         self._url = event.target.value
 
     def __call__(self):
-        with mui.paper(key=self._key, sx={"display": "flex", "flexDirection": "column"}, elevation=3):
+        with mui.Paper(key=self._key, sx={"display": "flex", "flexDirection": "column", "borderRadius": 3, "overflow": "hidden"}, elevation=1):
             with self.title_bar(padding="10px 15px 10px 15px", dark_switcher=False):
-                mui.icon.ondemand_video()
-                mui.typography("Media player")
+                mui.icon.OndemandVideo()
+                mui.Typography("Media player")
 
-            with mui.stack(direction="row", spacing=2, justify_content="space-evenly", align_items="center", sx={"padding": "10px"}):
-                mui.text_field(default_value=self._url, label="URL", variant="standard", sx={"flex": 0.97}, on_change=lazy(self._set_url))
-                mui.icon_button(mui.icon.play_circle_filled, on_click=sync(), sx={"color": "primary.main"})
+            with mui.Stack(direction="row", spacing=2, justifyContent="space-evenly", alignItems="center", sx={"padding": "10px"}):
+                mui.TextField(defaultValue=self._url, label="URL", variant="standard", sx={"flex": 0.97}, onChange=lazy(self._set_url))
+                mui.IconButton(mui.icon.PlayCircleFilled, onClick=sync(), sx={"color": "primary.main"})
 
-            media.player(self._url, controls=True, width="100%", height="100%")
+            media.Player(self._url, controls=True, width="100%", height="100%")

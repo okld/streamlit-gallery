@@ -33,18 +33,18 @@ class DataGrid(Dashboard.Item):
         except json.JSONDecodeError:
             data = self.DEFAULT_ROWS
 
-        with mui.paper(key=self._key, sx={"display": "flex", "flexDirection": "column"}, elevation=3):
+        with mui.Paper(key=self._key, sx={"display": "flex", "flexDirection": "column", "borderRadius": 3, "overflow": "hidden"}, elevation=1):
             with self.title_bar(padding="10px 15px 10px 15px", dark_switcher=False):
-                mui.icon.ondemand_video()
-                mui.typography("Data grid")
+                mui.icon.ViewCompact()
+                mui.Typography("Data grid")
 
-            with mui.box(sx={"flex": 1, "minHeight": 0}):
-                mui.data_grid(
+            with mui.Box(sx={"flex": 1, "minHeight": 0}):
+                mui.DataGrid(
                     columns=self.DEFAULT_COLUMNS,
                     rows=data,
-                    page_size=5,
-                    rows_per_page_options=[5],
-                    checkbox_selection=True,
-                    disable_selection_on_click=True,
-                    on_cell_edit_commit=self._handle_edit,
+                    pageSize=5,
+                    rowsPerPageOptions=[5],
+                    checkboxSelection=True,
+                    disableSelectionOnClick=True,
+                    onCellEditCommit=self._handle_edit,
                 )

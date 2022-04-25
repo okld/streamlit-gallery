@@ -4,6 +4,7 @@ import streamlit as st
 from pathlib import Path
 from streamlit import session_state as state
 from streamlit_elements import elements, sync, event
+from types import SimpleNamespace
 
 from .dashboard import Dashboard, Editor, Card, DataGrid, Radar, Pie, Player
 
@@ -30,31 +31,35 @@ def main():
 
     st.title("")
 
-    if "dashboard" not in state:
-        state.dashboard = Dashboard()
+    if "w" not in state:
+        w = SimpleNamespace(
+            dashboard=Dashboard(),
+            editor=Editor(0, 0, 6, 11, minW=3, minH=3),
+            player=Player(0, 12, 6, 10, minH=5),
+            pie=Pie(6, 0, 6, 7, minW=3, minH=4),
+            radar=Radar(12, 7, 3, 7, minW=2, minH=4),
+            card=Card(6, 7, 3, 7, minW=2, minH=4),
+            data_grid=DataGrid(6, 13, 6, 7, minH=4),
+        )
+        state.w = w
 
-        state.editor = Editor(0, 0, 6, 11, min_w=3, min_h=3)
-        state.editor.add_tab("Card content", Card.DEFAULT_CONTENT, "plaintext")
-        state.editor.add_tab("Data grid", json.dumps(DataGrid.DEFAULT_ROWS, indent=2), "json")
-        state.editor.add_tab("Radar chart", json.dumps(Radar.DEFAULT_DATA, indent=2), "json")
-        state.editor.add_tab("Pie chart", json.dumps(Pie.DEFAULT_DATA, indent=2), "json")
-
-        state.player = Player(0, 12, 6, 10, min_h=5)
-        state.pie = Pie(6, 0, 6, 7, min_w=3, min_h=4)
-        state.radar = Radar(12, 7, 3, 7, min_w=2, min_h=4)
-        state.card = Card(6, 7, 3, 7, min_w=2, min_h=4)
-        state.data_grid = DataGrid(6, 13, 6, 7, min_h=4)
+        w.editor.add_tab("Card content", Card.DEFAULT_CONTENT, "plaintext")
+        w.editor.add_tab("Data grid", json.dumps(DataGrid.DEFAULT_ROWS, indent=2), "json")
+        w.editor.add_tab("Radar chart", json.dumps(Radar.DEFAULT_DATA, indent=2), "json")
+        w.editor.add_tab("Pie chart", json.dumps(Pie.DEFAULT_DATA, indent=2), "json")
+    else:
+        w = state.w
 
     with elements("demo"):
-        event.on_hotkey("ctrl+s", sync(), bind_inputs=True, override_default=True)
+        event.Hotkey("ctrl+s", sync(), bindInputs=True, overrideDefault=True)
 
-        with state.dashboard(row_height=57):
-            state.editor()
-            state.player()
-            state.pie(state.editor.get_content("Pie chart"))
-            state.radar(state.editor.get_content("Radar chart"))
-            state.card(state.editor.get_content("Card content"))
-            state.data_grid(state.editor.get_content("Data grid"))
+        with w.dashboard(rowHeight=57):
+            w.editor()
+            w.player()
+            w.pie(w.editor.get_content("Pie chart"))
+            w.radar(w.editor.get_content("Radar chart"))
+            w.card(w.editor.get_content("Card content"))
+            w.data_grid(w.editor.get_content("Data grid"))
 
 
 if __name__ == "__main__":

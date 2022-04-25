@@ -45,25 +45,25 @@ class Radar(Dashboard.Item):
         except json.JSONDecodeError:
             data = self.DEFAULT_DATA
 
-        with mui.paper(key=self._key, sx={"display": "flex", "flexDirection": "column"}, elevation=3):
+        with mui.Paper(key=self._key, sx={"display": "flex", "flexDirection": "column", "borderRadius": 3, "overflow": "hidden"}, elevation=1):
             with self.title_bar():
-                mui.icon.radar()
-                mui.typography("Radar chart", sx={"flex": 1})
+                mui.icon.Radar()
+                mui.Typography("Radar chart", sx={"flex": 1})
 
-            with mui.box(sx={"flex": 1, "minHeight": 0}):
-                nivo.radar(
+            with mui.Box(sx={"flex": 1, "minHeight": 0}):
+                nivo.Radar(
                     data=data,
                     theme=self._theme["dark" if self._dark_mode else "light"],
                     keys=[ "chardonay", "carmenere", "syrah" ],
-                    index_by="taste",
-                    value_format=">-.2f",
+                    indexBy="taste",
+                    valueFormat=">-.2f",
                     margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
-                    border_color={ "from": "color" },
-                    grid_label_offset=36,
-                    dot_size=10,
-                    dot_color={ "theme": "background" },
-                    dot_border_width=2,
-                    motion_config="wobbly",
+                    borderColor={ "from": "color" },
+                    gridLabelOffset=36,
+                    dotSize=10,
+                    dotColor={ "theme": "background" },
+                    dotBorderWidth=2,
+                    motionConfig="wobbly",
                     legends=[
                         {
                             "anchor": "top-left",

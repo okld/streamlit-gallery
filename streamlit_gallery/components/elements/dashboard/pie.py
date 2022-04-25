@@ -45,22 +45,22 @@ class Pie(Dashboard.Item):
         except json.JSONDecodeError:
             data = self.DEFAULT_DATA
 
-        with mui.paper(key=self._key, sx={"display": "flex", "flexDirection": "column"}, elevation=3):
+        with mui.Paper(key=self._key, sx={"display": "flex", "flexDirection": "column", "borderRadius": 3, "overflow": "hidden"}, elevation=1):
             with self.title_bar():
-                mui.icon.pie_chart()
-                mui.typography("Pie chart", sx={"flex": 1})
+                mui.icon.PieChart()
+                mui.Typography("Pie chart", sx={"flex": 1})
 
-            with mui.box(sx={"flex": 1, "minHeight": 0}):
-                nivo.pie(
+            with mui.Box(sx={"flex": 1, "minHeight": 0}):
+                nivo.Pie(
                     data=data,
                     theme=self._theme["dark" if self._dark_mode else "light"],
                     margin={ "top": 40, "right": 80, "bottom": 80, "left": 80 },
-                    inner_radius=0.5,
-                    pad_angle=0.7,
-                    corner_radius=3,
-                    active_outer_radius_offset=8,
-                    border_width=1,
-                    border_color={
+                    innerRadius=0.5,
+                    padAngle=0.7,
+                    cornerRadius=3,
+                    activeOuterRadiusOffset=8,
+                    borderWidth=1,
+                    borderColor={
                         "from": "color",
                         "modifiers": [
                             [
@@ -69,12 +69,12 @@ class Pie(Dashboard.Item):
                             ]
                         ]
                     },
-                    arc_link_labels_skip_angle=10,
-                    arc_link_labels_text_color="grey",
-                    arc_link_labels_thickness=2,
-                    arc_link_labels_color={ "from": "color" },
-                    arc_labels_skip_angle=10,
-                    arc_labels_text_color={
+                    arcLinkLabelsSkipAngle=10,
+                    arcLinkLabelsTextColor="grey",
+                    arcLinkLabelsThickness=2,
+                    arcLinkLabelsColor={ "from": "color" },
+                    arcLabelsSkipAngle=10,
+                    arcLabelsTextColor={
                         "from": "color",
                         "modifiers": [
                             [

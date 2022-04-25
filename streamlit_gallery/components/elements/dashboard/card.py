@@ -11,24 +11,24 @@ class Card(Dashboard.Item):
     )
 
     def __call__(self, content):
-        with mui.card(key=self._key, sx={"display": "flex", "flexDirection": "column"}, elevation=3):
-            mui.card_header(
+        with mui.Card(key=self._key, sx={"display": "flex", "flexDirection": "column", "borderRadius": 3, "overflow": "hidden"}, elevation=1):
+            mui.CardHeader(
                 title="Shrimp and Chorizo Paella",
                 subheader="September 14, 2016",
-                avatar=mui.avatar("R", sx={"bgcolor": "red"}),
-                action=mui.icon_button(mui.icon.more_vert),
-                class_name=self._draggable_class,
+                avatar=mui.Avatar("R", sx={"bgcolor": "red"}),
+                action=mui.IconButton(mui.icon.MoreVert),
+                className=self._draggable_class,
             )
-            mui.card_media(
+            mui.CardMedia(
                 component="img",
                 height=194,
                 image="https://mui.com/static/images/cards/paella.jpg",
                 alt="Paella dish",
             )
 
-            with mui.card_content(sx={"flex": 1}):
-                mui.typography(content)
+            with mui.CardContent(sx={"flex": 1}):
+                mui.Typography(content)
 
-            with mui.card_actions(disable_spacing=True):
-                mui.icon_button(mui.icon.favorite)
-                mui.icon_button(mui.icon.share)
+            with mui.CardActions(disableSpacing=True):
+                mui.IconButton(mui.icon.Favorite)
+                mui.IconButton(mui.icon.Share)
